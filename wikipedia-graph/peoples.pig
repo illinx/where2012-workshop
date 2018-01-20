@@ -1,5 +1,5 @@
 SET default_parallel 4;
-TYPES = LOAD 's3://illinx-dinnergame/instance_types_en.nt.bz2' USING PigStorage(' ') AS (subj, pred, obj, dot);
+TYPES = LOAD 's3://illinx-dinnergame/instance_types_en.ttl.bz2' USING PigStorage(' ') AS (subj, pred, obj, dot);
 PEOPLE_TYPES = FILTER TYPES BY obj == '<http://xmlns.com/foaf/0.1/Person>';
 PEOPLE = FOREACH PEOPLE_TYPES GENERATE subj;
 
