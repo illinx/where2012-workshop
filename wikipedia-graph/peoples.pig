@@ -3,7 +3,7 @@ TYPES = LOAD 's3://illinx-dinnergame/instance_types_en.ttl.bz2' USING PigStorage
 PEOPLE_TYPES = FILTER TYPES BY obj == '<http://xmlns.com/foaf/0.1/Person>';
 PEOPLE = FOREACH PEOPLE_TYPES GENERATE subj;
 
-LINKS = LOAD 's3://illinx-dinnergame/page_links_en.nt.bz2' USING PigStorage(' ') AS (subj, pred, obj, dot);
+LINKS = LOAD 's3://illinx-dinnergame/page_links_en.ttl.bz2' USING PigStorage(' ') AS (subj, pred, obj, dot);
 
 SUBJ_LINKS_CO = COGROUP PEOPLE BY subj, LINKS BY subj;
 SUBJ_LINKS_FILTERED = FILTER SUBJ_LINKS_CO BY NOT IsEmpty(PEOPLE) AND NOT IsEmpty(LINKS);
